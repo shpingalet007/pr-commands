@@ -35,9 +35,11 @@ jobs:
       - uses: shpingalet007/pull-request-comment-trigger@master
         id: check
         with:
-          trigger: '#deploy'
+          trigger: '/version set'
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - run: 'echo Found it!'
-        if: steps.check.outputs.triggered == 'true'
+        if: |
+          echo ${{ fromJSON(steps) }}
+          steps.check.outputs.triggered == 'true'
