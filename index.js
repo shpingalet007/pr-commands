@@ -64,7 +64,7 @@ async function run() {
             args.push(bodySplit[i]);
         });
 
-        core.setOutput("arguments", args);
+        core.setOutput("arguments", JSON.stringify(args));
     }
 
     if (!reaction) {
