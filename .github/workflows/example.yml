@@ -40,5 +40,5 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - run: |
-          echo "TRIGGERED ${{ steps.check.outputs.comment_body }}"
+          echo "TRIGGERED ${{ steps.check.outputs.arguments }}"
         if: steps.check.outputs.triggered == 'true'
