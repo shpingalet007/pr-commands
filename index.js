@@ -35,10 +35,11 @@ async function run() {
 
     const prefixOnly = core.getInput("prefix_only") === 'true';
 
-    let regexTrigger = new RegExp(trigger.replaceAll(' **', ' [^\\\\s]+') + '.*');
+    const regexRawTrigger = trigger.replace(/\s\*{2}/g, ' [^\\\\s]+');
+    let regexTrigger = new RegExp(regexRawTrigger  + '.*');
 
     if (prefixOnly) {
-        regexTrigger = new RegExp('^' + trigger.replaceAll(' **', ' [^\\\\s]+') + '.*');
+        regexTrigger = new RegExp('^' + regexRawTrigger + '.*');
     }
 
     if ((prefixOnly && !regexTrigger.test(body)) || !regexTrigger.test(body)) {
