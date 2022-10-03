@@ -34,16 +34,25 @@ async function run() {
 
 
     const prefixOnly = core.getInput("prefix_only") === 'true';
-    if ((prefixOnly && !body.startsWith(trigger)) || !body.includes(trigger)) {
+
+    let regexTrigger = new RegExp(trigger.replaceAll(' **', ' [^\\\\s]+') + '.*');
+
+    if (prefixOnly) {
+        regexTrigger = new RegExp('^' + trigger.replaceAll(' **', ' [^\\\\s]+') + '.*');
+    }
+
+    if ((prefixOnly && !regexTrigger.test(body)) || !regexTrigger.test(body)) {
         core.setOutput("triggered", "false");
         return;
     }
 
     core.setOutput("triggered", "true");
 
+    const allowArguments = core.getInput("allow_arguments") === 'true';
+
     const args = [];
 
-    if (trigger.includes('**')) {
+    if (allowArguments && trigger.includes('**')) {
         const triggerSplit = trigger.split(' ');
         const bodySplit = body.split(' ');
 
