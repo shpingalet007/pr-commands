@@ -35,7 +35,7 @@ jobs:
       - uses: shpingalet007/pull-request-comment-trigger@master
         id: check
         with:
-          trigger: '/version set'
+          trigger: '/version set **'
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
