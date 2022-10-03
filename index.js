@@ -41,6 +41,23 @@ async function run() {
 
     core.setOutput("triggered", "true");
 
+    const args = [];
+
+    if (trigger.includes('**')) {
+        const triggerSplit = trigger.split(' ');
+        const bodySplit = body.split(' ');
+
+        triggerSplit.forEach((part, i) => {
+            if (part !== '**') {
+                return;
+            }
+
+            args.push(bodySplit[i]);
+        });
+
+        core.setOutput("arguments", args);
+    }
+
     if (!reaction) {
         return;
     }
