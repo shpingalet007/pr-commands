@@ -41,5 +41,5 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - run: 'echo Found it!'
         if: |
-          echo ${{ fromJSON(steps) }}
+          echo "${{ fromJSON(steps) }}"
           steps.check.outputs.triggered == 'true'
