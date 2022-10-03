@@ -37,6 +37,7 @@ jobs:
         with:
           trigger: '/version set **'
           reaction: rocket
+          allow_arguments: true
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - run: |
