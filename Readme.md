@@ -1,4 +1,4 @@
-# Pull Request Comment Trigger
+# Pull Request Commands
 
 Look for a "trigger word" in a pull-request description or comment, so that later steps can know whether or not to run.
 
