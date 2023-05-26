@@ -55,5 +55,6 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - run: |
           echo 'Found it!'
+          echo ${{ steps.check.outputs.arguments }}'
           echo 'Deploy on ${{ fromJson(steps.check.outputs.arguments)[0] }}'
         if: steps.check.outputs.triggered == 'true'
