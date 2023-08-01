@@ -52,7 +52,7 @@ async function run() {
         hasTrigger = regexTrigger.test(body);
     }
 
-    if ((prefixOnly && !hasTrigger) || !hasTrigger) {
+    if (!hasTrigger) {
         core.setOutput("triggered", "false");
         return;
     }
